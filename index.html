@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherForge - Advanced Weather Intelligence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-system">
+        <div class="mesh-gradient"></div>
+        <div class="hexagon-grid"></div>
+    </div>
+    
+    <div class="particle-system" id="particleSystem"></div>
+    
+    <div class="blob-container">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen" style="display: none;">
+        <div class="loading-animation">
+            <div class="loading-ring"></div>
+            <div class="loading-ring"></div>
+            <div class="loading-ring"></div>
+        </div>
+        <div class="loading-text" id="loadingText">INITIALIZING WEATHER SCAN...</div>
+        <div class="loading-progress">
+            <div class="loading-progress-fill"></div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Hero Section -->
+        <section class="hero-section" id="heroSection">
+            <h1 class="hero-title">WEATHERFORGE</h1>
+            <p class="hero-subtitle">Advanced Atmospheric Intelligence System</p>
+            <button class="scan-button" id="scanButton">🛰️ INITIATE WEATHER SCAN</button>
+        </section>
+
+        <!-- Weather Dashboard -->
+        <section class="weather-dashboard" id="weatherDashboard">
+            <div class="dashboard-grid">
+                <div class="main-weather-card" id="mainWeatherCard">
+                    <div class="weather-card-particles" id="weatherCardParticles"></div>
+                    <div class="location-header">
+                        <span class="location-icon">📍</span>
+                        <span id="locationText">Scanning location...</span>
+                    </div>
+                    
+                    <div class="temperature-display" id="temperatureDisplay">--°</div>
+                    <div class="weather-condition" id="weatherCondition">Loading conditions...</div>
+                    
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-icon">💧</div>
+                            <div class="metric-value" id="humidityValue">--%</div>
+                            <div class="metric-label">Humidity</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">💨</div>
+                            <div class="metric-value" id="windValue">-- mph</div>
+                            <div class="metric-label">Wind Speed</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">🌡️</div>
+                            <div class="metric-value" id="feelsLikeValue">--°</div>
+                            <div class="metric-label">Feels Like</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">👁️</div>
+                            <div class="metric-value" id="visibilityValue">-- mi</div>
+                            <div class="metric-label">Visibility</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="side-panel">
+                    <div class="forecast-card">
+                        <h3 class="card-title">5-Day Forecast</h3>
+                        <div id="forecastList">
+                            <!-- Forecast items will be populated here -->
+                        </div>
+                    </div>
+
+                    <div class="quick-stats-card">
+                        <h3 class="card-title">Quick Stats</h3>
+                        <div class="analysis-content">
+                            <p id="quickStatsText">Analyzing atmospheric data...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Analysis Section -->
+        <section class="analysis-section" id="analysisSection">
+            <div class="analysis-header">
+                <h2 class="analysis-title">DETAILED ANALYSIS</h2>
+                <p class="analysis-subtitle">Comprehensive atmospheric intelligence and forecasting</p>
+            </div>
+            
+            <div class="analysis-grid">
+                <div class="analysis-card">
+                    <h3 class="analysis-card-title">
+                        <span>📊</span>
+                        ATMOSPHERIC PRESSURE
+                    </h3>
+                    <div class="analysis-chart" id="pressureChart">
+                        <!-- Pressure chart bars will be populated here -->
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="pressureProgress" style="width: 0%;"></div>
+                    </div>
+                    <div class="analysis-content">
+                        <p id="pressureAnalysis">Monitoring barometric pressure trends...</p>
+                    </div>
+                </div>
+
+                <div class="analysis-card">
+                    <h3 class="analysis-card-title">
+                        <span>☀️</span>
+                        UV INDEX MONITORING
+                    </h3>
+                    <div class="analysis-chart" id="uvChart">
+                        <!-- UV chart bars will be populated here -->
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="uvProgress" style="width: 0%;"></div>
+                    </div>
+                    <div class="analysis-content">
+                        <p id="uvAnalysis">Tracking ultraviolet radiation levels...</p>
+                    </div>
+                </div>
+
+                <div class="analysis-card">
+                    <h3 class="analysis-card-title">
+                        <span>🌬️</span>
+                        AIR QUALITY INDEX
+                    </h3>
+                    <div class="analysis-chart" id="aqiChart">
+                        <!-- AQI chart bars will be populated here -->
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="aqiProgress" style="width: 0%;"></div>
+                    </div>
+                    <div class="analysis-content">
+                        <p id="aqiAnalysis">Analyzing air quality and particle levels...</p>
+                    </div>
+                </div>
+
+                <div class="analysis-card">
+                    <h3 class="analysis-card-title">
+                        <span>🌧️</span>
+                        PRECIPITATION RADAR
+                    </h3>
+                    <div class="analysis-chart" id="precipChart">
+                        <!-- Precipitation chart bars will be populated here -->
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="precipProgress" style="width: 0%;"></div>
+                    </div>
+                    <div class="analysis-content">
+                        <p id="precipAnalysis">Calculating precipitation probability...</p>
+                    </div>
+                </div>
+
+                <div class="analysis-card">
+                    <h3 class="analysis-card-title">
+                        <span>🌪️</span>
+                        WIND PATTERN ANALYSIS
+                    </h3>
+                    <div class="analysis-chart" id="windChart">
+                        <!-- Wind chart bars will be populated here -->
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="windProgress" style="width: 0%;"></div>
+                    </div>
+                    <div class="analysis-content">
+                        <p id="windAnalysis">Tracking wind patterns and gusts...</p>
+                    </div>
+                </div>
+
+                <div class="analysis-card">
+                    <h3 class="analysis-card-title">
+                        <span>🌡️</span>
+                        TEMPERATURE VARIANCE
+                    </h3>
+                    <div class="analysis-chart" id="tempChart">
+                        <!-- Temperature chart bars will be populated here -->
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="tempProgress" style="width: 0%;"></div>
+                    </div>
+                    <div class="analysis-content">
+                        <p id="tempAnalysis">Analyzing temperature fluctuations...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer-section">
+            <div class="footer-content">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <div class="footer-logo">WEATHERFORGE</div>
+                        <div class="footer-tagline">Advanced Atmospheric Intelligence</div>
+                    </div>
+                    <div class="footer-info">
+                        <div class="footer-year">© 2025</div>
+                        <div class="footer-creator">Made by <span class="creator-highlight">GlitchForge</span></div>
+                    </div>
+                </div>
+                <div class="footer-decoration">
+                    <div class="footer-particle"></div>
+                    <div class="footer-particle"></div>
+                    <div class="footer-particle"></div>
+                </div>
+            </div>
+        </footer>
+    </div>
+  <script src="script.js"></script>
+    
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98f6672894e225b1',t:'MTc2MDYwNTYxNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+  
+</body>
+</html>
